@@ -1,0 +1,134 @@
+<html>
+<header>
+	<meta charset='utf-8'/>
+    <title> This is first Hbuilder programming </title>
+	<!--step1:引入Echarts.js -->
+    <script src="js/echarts.js"></script>
+</header>
+
+
+<body>
+ <!-- step2: HTML DOM中要准备一个DIV，将来用于渲染Echarts -->
+    <div id="main"  style="width: 900px;height: 600px; "></div>			
+	
+    <script>
+        //step3: 初始化Echarts图表
+        var myChart = echarts.init(document.getElementById('main'));
+
+var data = [
+    [[116.2,98,22,'科怀-伦纳德',1990],[109.8,100.6,13.7,'帕斯卡尔-西亚卡姆',1990],[111.7,95.2,9.5,'凯尔-洛瑞',1990],[95.7,91,11.3,'塞尔吉-伊巴卡',1990],[90.9,104.1,8.1,'马克-加索尔',1990],[91.7,95,11.2,'诺曼-鲍威尔',1990],[119,101.4,4.8,'丹尼-格林',1990],[92.7,101,4.2,'费雷德-范佛力特',1990],[88.7,119.9,2.1,'克里斯-布歇',1990],[82.1,114,2.5,'约迪-米克斯',1990],[75.5,115.5,1.6,'林书豪',1990],[74.7,117.4,1.9,'马尔科姆-米勒',1990],[72.4,110.3,2.5,'帕特里克-麦考',1990],[73.7,113.3,1.5,'埃里克-莫兰德',1990]],
+    [[120.2,109,18,'凯文-杜兰特',2015],[121.8,109.7,12.7,'斯蒂芬-库里',2015],[114.9,112.7,7.6,'克莱-汤普森',2015],[122.8,109.9,12,'德雷蒙德-格林',2015],[125.8,108.2,11,'安德烈-伊格达拉',2015],[124.4,102.1,8.3,'凯文-卢尼',2015],[84,108.9,5.1,'德马库斯-考辛斯',2015],[105,119.1,6.9,'奎因-库克',2015],[102.9,115.3,3,'肖恩-利文斯顿',2015],[100,109.1,6.4,'阿方索-麦吉尼',2015],[94.4,114.7,5.3,'乔丹-贝尔',2015],[110.9,111.8,14.2,'安德鲁-博古特',2015],[88.5,108.3,7.2,'约纳斯-杰雷布科',2015],[90.5,115,7.1,'雅各布-埃文斯',2015]]
+];
+
+option = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    title: {
+        text: 'Toronto Raptors VS Golden State Warriors'
+    },
+    legend: {
+        right: 10,
+        data: ['Raptors', 'Warriors']
+    },
+    xAxis: { type: 'value',
+        name: '进攻效率值',
+        nameGap: 16,
+        nameTextStyle: {
+            fontSize: 14
+        },
+    	
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+             scale: true
+    },
+    yAxis: { type: 'value',
+        name: '防守效率值',
+        nameLocation: 'start',
+        nameGap: 16,
+        nameTextStyle: {
+            fontSize: 14
+        },
+        inverse:true, 
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: 'Raptors',
+        data: data[0],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return data[2]*2;
+        },
+        label: {
+            emphasis: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            normal: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(120, 36, 50, 0.5)',
+                shadowOffsetY: 5,
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                    offset: 0,
+                    color: 'rgb(251, 118, 123)'
+                }, {
+                    offset: 1,
+                    color: 'rgb(204, 46, 72)'
+                }])
+            }
+        }
+    }, {
+        name: 'Warriors',
+        data: data[1],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return data[2]*2;
+        },
+        label: {
+            emphasis: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            normal: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(25, 100, 150, 0.5)',
+                shadowOffsetY: 5,
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                    offset: 0,
+                    color: 'rgb(129, 227, 238)'
+                }, {
+                    offset: 1,
+                    color: 'rgb(25, 183, 207)'
+                }])
+            }
+        }
+    }]
+};
+    myChart.setOption(option);
+    </script>
+    
+</body>
+
+</html>

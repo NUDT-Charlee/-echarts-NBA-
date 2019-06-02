@@ -1,0 +1,101 @@
+<html>
+<header>
+	<title> This is a Bar </title>
+	<!-- step1:引入Echarts.js -->
+	//<script src="js/echarts-all.js"></script>  
+    <script src="js/echarts.js"></script>
+</header>
+
+<body>
+    <!-- step2: HTML DOM中要准备一个DIV，将来用于渲染Echarts -->
+    <div id="main"  style="width: 900px;height: 600px; "></div>			
+	
+    <script>
+        //step3: 初始化Echarts图表
+        var myChart = echarts.init(document.getElementById('main'));
+		
+        //step4：指定图表的配置项和数据
+		var option = {
+		     title: {
+			      text: "某地区蒸发量和降水量",
+				  left: 'center',			    //标题位置，还可以是left，right，或者指定具体像素，在2.x版本中 x=left,y=top 
+				  subtext:"纯属虚构",
+			},
+			tooltip: {                       //气泡提示配置
+			    trigger: 'axis'             //触发类型，默认数据触发，为'axis'
+			},
+			legend:{                        //图例配置
+				 data: ["蒸发量","降水量"],
+				 left:'left'
+			},
+			toolbox: {
+			        show: true,             //是否显示
+					orient: 'horizontal',   //布局方式 horizontal水平（默认），vertical竖直
+					left: '700px',
+					top: '30px',
+					feature: {              //定制自己需要显示的内容
+					    mark: {             //设置一些标记，例如辅助线（在2.x版本才生效）
+						    show: true,
+							title: {                    
+							  mark: '辅助线-开关',
+							  markUndo: '辅助线-删除',
+							  markClear:'辅助线-清空'
+							},
+							lineStyle: {          //设置辅助线属性
+							   width: 1,
+							   color: '#le90ff',
+							   type:'dashed'
+							}
+					     },
+					    dataView: {         //是否显示数据视图
+					        show: true,
+                            readOnly: false							
+					     },
+						 magicType: {       //数据视图的切换
+						     show: true,
+							 type: ["line","bar"]
+						 },
+						 restore:{          //还原
+						     show: true
+						 },
+						 saveAsImage: {     //是否下载图片
+						     show: true
+						 }
+					}
+			},
+			xAxis:[                          //直角坐标系横轴数组
+			    {
+				      type: 'category',      //坐标轴类型，横轴默认为类目
+					  data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+				}
+			],
+			yAxis:[                          //直角坐标系纵轴数组
+			    {
+				      type: 'value',         //坐标轴类型，纵轴默认为数组
+				}
+			],		  
+			series:[
+			    {
+				    name: "蒸发量",         //系列名称
+					type: 'bar',            //图表类型
+					data: [2,4.9,77,23.2,25.6,76.7,135.6,162.2,32.6,20,6.4,3.3],
+				},
+				{
+				    name: "降水量",         //系列名称
+					type: 'bar',            //图表类型
+					data: [2.6,5.9,9,26.4,28.7,70.7,175.6,182.2,48.7,18.8,6,2.3]
+				}
+			]
+		};
+		
+		//step5: 将实例化的Echarts图表设置配置项，同时在DOM中渲染图表显示
+		myChart.setOption(option);
+	</script>
+</body>
+<html>
+			
+			
+			
+			
+	
+         		 

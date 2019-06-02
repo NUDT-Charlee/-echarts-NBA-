@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <title> 这是一个模板 </title>
+	<!-- script标签式引入 -->
+	<script src="js/echarts.js"></script>
+</header>
+
+<body>
+    <div id="main"  style="width: 900px;height: 600px; "></div>
+    <script>
+        //初始化
+        var myChart = echarts.init(document.getElementById('main'));
+		
+        //图表使用-------------
+		var option = {
+		     legend:{                        //图例配置
+			     padding: 5,                 //图例内边距，单位px，默认上下左右内边距为5
+				 itemGap: 10,                //Legend各个item之间的间隔，横向为水平间隔，纵向布局为纵向间隔
+				 data: ['ios','android']     //图例名称，要和series中的name对应，顺序不能颠倒
+			},
+			
+			tooltip: {                       //气泡提示配置
+			    //trigger: 'item'              //触发类型，默认数据触发，为'axis'
+				trigger: 'axis'
+			},
+			
+			xAxis:[                          //直角坐标系横轴数组
+			    {
+				      type: 'category',      //坐标轴类型，横轴默认为类目
+					  data: ['Jan','Feb','Mar','Apr','May','Jun']
+				}
+			],
+			yAxis:[                          //直角坐标系纵轴数组
+			    {
+				      type: 'value',          //坐标轴类型，纵轴默认为数组
+					  boundaryGap: [0,1,0,1], //坐标轴两端的空白策略，数组里数值代表百分比
+					  splitNumber: 4          //数值轴用，分割段数，默认为5
+				}
+			],		  
+			series:[
+			    {
+				    name: 'ios',             //系列名称
+					type: 'line',            //图表类型
+					data: [112, 23, 45, 56, 233, 343]
+				},
+				{
+				    name: 'android',         //系列名称
+					type: 'line',            //图表类型
+					data: [46, 263, 35, 66, 33, 143]
+				},
+			
+			]
+		};
+		// 将实例化的Echarts图表设置配置项，同时在DOM中渲染图表显示
+		myChart.setOption(option);
+		
+	</script>
+</body>
+<html>
+			
+			
+			
+			
+	
+         		 
